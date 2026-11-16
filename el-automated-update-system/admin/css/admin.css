@@ -1,0 +1,44 @@
+.el-aas-status-table {
+	width: 100%;
+	max-width: 980px;
+	border-collapse: collapse;
+	margin-top: 8px;
+}
+
+.el-aas-status-table th,
+.el-aas-status-table td {
+	text-align: left;
+	padding: 10px 12px;
+	border-bottom: 1px solid #e2e4e7;
+	vertical-align: top;
+}
+
+.el-aas-status-table th {
+	width: 220px;
+	font-weight: 600;
+}
+
+.el-aas-status-table code {
+	word-break: break-all;
+}
+
+.el-aas-log {
+	width: 100%;
+	min-height: 320px;
+	font-family: Consolas, Monaco, "Courier New", monospace;
+	font-size: 12px;
+	line-height: 1.5;
+	white-space: pre;
+}
+
+.el-aas-actions {
+	margin-top: 12px;
+}
+
+.el-aas-actions .button {
+	margin-right: 8px;
+}
+
+#el_aas_ajax_message {
+	margin-top: 12px;
+}
