@@ -28,7 +28,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$root       = 'F:\EL Automated Update System'
+$root       = $PSScriptRoot
 $pluginDir  = Join-Path $root 'el-automated-update-system'
 $mainFile   = Join-Path $pluginDir 'el-automated-update-system.php'
 $readmeFile = Join-Path $pluginDir 'readme.txt'

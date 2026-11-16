@@ -1,0 +1,13 @@
+{
+  "name": "el-automated-update-system-tools",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Build and validation tooling for the EL Automated Update System WordPress plugin.",
+  "scripts": {
+    "validate": "node validate-php.js el-automated-update-system/el-automated-update-system.php el-automated-update-system/uninstall.php el-automated-update-system/includes/class-el-aas-deployer.php el-automated-update-system/includes/class-el-aas-github-api.php el-automated-update-system/includes/class-el-aas-logger.php el-automated-update-system/includes/class-el-aas-self-updater.php el-automated-update-system/includes/class-el-aas-settings.php el-automated-update-system/includes/class-el-aas-webhook.php",
+    "build": "pwsh -NoProfile -File build-zip.ps1"
+  },
+  "devDependencies": {
+    "php-parser": "^3.7.0"
+  }
+}

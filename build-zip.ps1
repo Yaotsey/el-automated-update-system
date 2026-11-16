@@ -1,7 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
-$source = 'F:\EL Automated Update System\el-automated-update-system'
-$dest   = 'F:\EL Automated Update System\el-automated-update-system.zip'
+$root   = $PSScriptRoot
+$source = Join-Path $root 'el-automated-update-system'
+$dest   = Join-Path $root 'el-automated-update-system.zip'
 $base   = Split-Path -Leaf $source
 
 if (Test-Path -LiteralPath $dest) {

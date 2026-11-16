@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish the plugin package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install the PHP syntax validator
+        run: npm install --no-audit --no-fund
+
+      - name: Validate PHP syntax
+        run: npm run validate
+
+      - name: Build the plugin package
+        shell: pwsh
+        run: ./build-zip.ps1
+
+      - name: Verify the package exists
+        shell: pwsh
+        run: |
+          if (-not (Test-Path 'el-automated-update-system.zip')) {
+            throw 'The build did not produce el-automated-update-system.zip'
+          }
+          Get-Item 'el-automated-update-system.zip' | Format-List Name, Length, LastWriteTime
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          gh release view "$TAG" >/dev/null 2>&1 || \
+            gh release create "$TAG" --title "$TAG" --generate-notes
+          gh release upload "$TAG" el-automated-update-system.zip --clobber
